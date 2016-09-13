@@ -1,0 +1,20 @@
+<main>
+  <aside>
+    <div class="search">
+      <input type="text" ng-model='search' placeholder="Search">
+      <span>&#128270;</span>
+    </div>
+    <ul>
+      <li ng-repeat="feed in feeds | filter: searchFeeds track by $index" ng-click="selectFeed(feed, $index)" ng-class="{'selected': getSelected(feed)}">
+        <a class="ellipsis" title={{feed.feedUrl}} href="#/?id={{selected.feedUrl}}">{{feed.feedUrl}}</a>
+        <span ng-click="removeFeed($index)">&#10006;</span>
+      </li>
+    </ul>
+  </aside>
+  <section>
+    <h3>{{selected.feedUrl}}</h3>
+    <ul>
+      <li ng-repeat="item in selected.entries" feed-item item="item"></li>
+    </ul>
+  </section>
+</main>
